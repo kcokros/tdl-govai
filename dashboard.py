@@ -8,8 +8,14 @@ import os
 # Set Streamlit layout to wide
 st.set_page_config(layout="wide")
 
-# Load OpenAI API Key securely
-openai.api_key = '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'  # Replace with your actual OpenAI API key
+# Request OpenAI API Key input from the user
+api_key = st.text_input("Enter your OpenAI API Key", type="password")
+
+# Set OpenAI API Key if provided
+if api_key:
+    openai.api_key = api_key
+else:
+    st.warning("Please enter your OpenAI API key to continue.")
 
 # Load processed data
 @st.cache_data
